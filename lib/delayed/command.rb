@@ -78,7 +78,7 @@ module Delayed
     end
     
     def run_process(process_name, dir)
-      Daemons.run_proc(process_name, :dir => dir, :dir_mode => :normal, :monitor => @monitor, :ARGV => @args) do |*args|
+      Daemons.run_proc(process_name, :dir => dir, :dir_mode => :normal, :monitor => @monitor, :ARGV => @args, :force_kill_waittime => 0) do |*args|
         $0 = File.join(@options[:prefix], process_name) if @options[:prefix]
         run process_name
       end
